@@ -1,12 +1,10 @@
-import credentials, paigoogle
+import credentials
 import functions_framework
 from flask import jsonify
-from datetime import datetime, timezone
-import os
 
 from paigoogle import new_business
 
-SHARED_SECRET = os.environ.get("SHARED_SECRET")
+SHARED_SECRET = credentials.API_KEY
 
 
 @functions_framework.http
@@ -17,7 +15,6 @@ def hello_pubsub(request):
         return jsonify({"error": "Unauthorized"}), 401
 
     print("Hello_pubsub")
-    currentTime = datetime.now(timezone.utc).replace(tzinfo=None)
 
     request_json = request.get_json(silent=True)
 
@@ -35,7 +32,7 @@ def hello_pubsub(request):
         if not business:
             return jsonify({"error": "Missing 'business' in request body"}), 400
 
-        result = paigoogle.new_business(patient_id, business)
+        result = new_business(patient_id, business)
         return result
 
     else:

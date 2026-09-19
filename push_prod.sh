@@ -1,5 +1,4 @@
-
-gcloud functions deploy new_patient \
+gcloud functions deploy new_business \
   --gen2 \
   --runtime=python312 \
   --region=asia-southeast2 \
@@ -7,4 +6,4 @@ gcloud functions deploy new_patient \
   --entry-point=hello_pubsub \
   --trigger-http \
   --allow-unauthenticated \
-  --set-secrets="new_patient:latest"
+  --set-secrets="SHARED_SECRET=new_patient:latest"
