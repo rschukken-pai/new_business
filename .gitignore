@@ -1,4 +1,8 @@
 credentials.py
+API_KEY.txt
+.gcloudignore
+.git
+.gitignore
 __pycache__/
 *.pyc
 .venv/
